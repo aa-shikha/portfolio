@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shikha | Portfolio</title>
+    <!-- Font Family: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Preloader Screen -->
+    <div  id="preloader">
+        <div class="text-wrapper">
+            <h1 class="loader-text">Shikha<span class="dot">.</span></h1>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+
+        <!-- Full Background Video -->
+<video id="heroVideo" autoplay loop muted playsinline class="hero-bg-video">
+    <source src="portfolio.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<!-- Dark/Red Overlay -->
+<div class="video-overlay"></div>
+
+<div id="navbar-placeholder"></div>
+
+<!-- Floating Sound  -->
+<div class="sound-control-wrapper" id="soundControl">
+    <button id="soundToggle" class="sound-btn" type="button" aria-label="Toggle Sound">
+        <i id="soundIcon" class="fa-solid fa-volume-xmark"></i>
+    </button>
+    <span id="soundLabel" class="sound-label">UNMUTE REEL</span>
+</div>
+        <!-- Main Hero Text Content -->
+        <div class="hero-container">
+            <div class="hero-text-content">
+                <h1 class="hero-heading">
+                    Hi, I’m a<br>
+                    <span>Frontend Developer & Web Designer</span>
+                </h1>
+                <p class="hero-description">
+                    I build responsive, modern, and user-friendly websites using HTML5, CSS3, JavaScript, Bootstrap, and Figma. I enjoy creating clean, visually appealing, and interactive web experiences.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- About Section -->
+<section id="about" class="about-section">
+    <div class="about-container">
+        
+        <!-- Left Side: Hanging Tablet Frame Image Box -->
+        <div class="about-image-wrapper animate-top-bottom">
+            <div class="wire-handle"></div>
+            <div class="tablet-frame">
+                <img src="about-image.png" alt="Shikha Waldia" class="about-img">
+            </div>
+        </div>
+
+        <!-- Right Side: Content Text -->
+        <div class="about-text-content animate-right-left">
+            <h2 class="about-heading">Who I Am?</h2>
+            <p class="about-description">
+                Hi, I'm <strong>Shikha Waldia</strong> , a passionate Frontend Developer & Web Designer with a strong interest in creating modern, responsive, and user-friendly websites. I enjoy transforming ideas into visually appealing and functional digital experiences. My expertise includes HTML, CSS, JavaScript, Bootstrap, AngularJS, and React, along with UI/UX design using Figma, Adobe Photoshop, and Illustrator. I believe in writing clean, maintainable code while designing intuitive interfaces that deliver a seamless user experience.
+            </p>
+
+            <!-- Tech Icons Row -->
+            <div class="tech-icons">
+                <i class="fa-brands fa-html5" title="HTML5"></i>
+                <i class="fa-brands fa-css3-alt" title="CSS3"></i>
+                <i class="fa-brands fa-js" title="JavaScript"></i>
+                <i class="fa-brands fa-bootstrap" title="Bootstrap"></i>
+                <i class="fa-brands fa-react" title="React"></i>
+                <i class="fa-brands fa-figma" title="Figma"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Wavy Bottom SVG Divider -->
+    <div class="wave-bottom">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#ffffff" fill-opacity="1" d="M0,192L60,202.7C120,213,240,235,360,224C480,213,600,171,720,165.3C840,160,960,192,1080,202.7C1200,213,1320,203,1380,197.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+        </svg>
+    </div>
+</section>
+
+<!-- Expertise Section -->
+<section id="expertise" class="expertise-section">
+    
+    <!-- SVG Dotted Path (Positioned Relative to Container) -->
+    <svg class="expertise-path-svg" viewBox="0 0 1000 1400" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path id="expertisePath" d="M 720 180 C 500 350, 250 350, 220 520 C 200 680, 750 680, 720 880 C 690 1080, 280 1080, 260 1220" 
+              stroke="#121212" stroke-width="3" stroke-dasharray="8 8" stroke-linecap="round"/>
+    </svg>
+
+    <div class="expertise-container">
+        
+        <!-- Left Hero Heading Area -->
+        <div class="expertise-intro animate-from-left">
+            <span class="badge-tag">My Expertise</span>
+            <h2 class="expertise-main-heading">
+             Building Modern Web Experiences with Code & Creativity
+            </h2>
+            <p class="expertise-sub-text">
+                Combining frontend development and UI/UX design to create responsive, visually appealing, and user-friendly websites that deliver seamless digital experiences.
+            </p>
+        </div>
+
+        <!-- 4 Red Floating Cards Stack -->
+        <div class="cards-stack">
+            <!-- Card 01 (Right Side) -->
+<div class="expert-card card-right animate-from-right" id="card1">
+    <div class="card-pin"></div>
+    <div class="card-inner">
+        <span class="card-num">01</span>
+        <h3 class="card-title">Frontend<br>Development</h3>
+        <p class="card-desc">Creating responsive and interactive web interfaces using HTML, CSS, JavaScript, Bootstrap, AngularJS, and React with clean, maintainable code and modern design principles.</p>
+    </div>
+</div>
+
+<!-- Card 02 (Left Side) -->
+<div class="expert-card card-left animate-from-left">
+    <div class="card-pin"></div>
+    <div class="card-inner">
+        <span class="card-num">02</span>
+        <h3 class="card-title">UI/UX &<br>Web Design</h3>
+        <p class="card-desc">Designing clean, modern, and user-friendly interfaces using Figma, Adobe Photoshop, and Illustrator with a strong focus on usability and visual appeal.</p>
+    </div>
+</div>
+
+<!-- Card 03 (Right Side) -->
+<div class="expert-card card-right animate-from-right">
+    <div class="card-pin"></div>
+    <div class="card-inner">
+        <span class="card-num">03</span>
+        <h3 class="card-title">Responsive Web Design</h3>
+        <p class="card-desc">Building fully responsive websites that deliver a seamless experience across mobile, tablet, and desktop devices with a focus on performance and accessibility.</p>
+    </div>
+</div>
+
+<!-- Card 04 (Left Side) -->
+<div class="expert-card card-left animate-from-left">
+    <div class="card-pin"></div>
+    <div class="card-inner">
+        <span class="card-num">04</span>
+        <h3 class="card-title">Code Quality &<br>Deployment</h3>
+        <p class="card-desc">Developing well-structured and scalable code while ensuring smooth deployment, performance, and maintainability of modern web applications.</p>
+    </div>
+</div>
+        </div>
+
+        <div class="bottom-tagline">
+            <span>Turning ideas into reality!</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="skills-section">
+    <div class="skills-container">
+        
+        <!-- Section Header -->
+        <div class="skills-intro animate-from-left">
+            <span class="badge-tag">TECHNICAL STACK</span>
+            <h2 class="skills-main-heading">Technologies I Work With</h2>
+            <p class="skills-sub-text">Frontend development, UI/UX design, version control, and database technologies.</p>
+        </div>
+        
+        <!-- 4 Double-Layer Red Grid Cards -->
+        <div class="skills-grid">
+            
+            <!-- Card 1: Frontend Development -->
+            <div class="skill-card animate-top-bottom">
+                <div class="card-pin"></div>
+                <div class="skill-card-inner">
+                    <h3 class="skill-card-title">Frontend Development</h3>
+                    <div class="tags-wrapper">
+                        <span class="skill-pill">HTML5</span>
+                        <span class="skill-pill">CSS3</span>
+                        <span class="skill-pill">JavaScript</span>
+                        <span class="skill-pill">React</span>
+                        <span class="skill-pill">AngularJS</span>
+                        <span class="skill-pill">Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: UI/UX & Graphic Design -->
+            <div class="skill-card animate-top-bottom">
+                <div class="card-pin"></div>
+                <div class="skill-card-inner">
+                    <h3 class="skill-card-title">UI/UX & Design</h3>
+                    <div class="tags-wrapper">
+                        <span class="skill-pill">Figma</span>
+                        <span class="skill-pill">Photoshop</span>
+                        <span class="skill-pill">Illustrator</span>
+                        <span class="skill-pill">Responsive Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Tools & Version Control -->
+            <div class="skill-card animate-top-bottom">
+                <div class="card-pin"></div>
+                <div class="skill-card-inner">
+                    <h3 class="skill-card-title">Tools & Version Control</h3>
+                    <div class="tags-wrapper">
+                        <span class="skill-pill">GitHub</span>
+                        <span class="skill-pill">VS Code</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Database & Fundamentals -->
+            <div class="skill-card animate-top-bottom">
+                <div class="card-pin"></div>
+                <div class="skill-card-inner">
+                    <h3 class="skill-card-title">Database & Fundamentals</h3>
+                    <div class="tags-wrapper">
+                        <span class="skill-pill">SQL</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="projects-section">
+    <div class="projects-container">
+        
+        <!-- Section Intro Header -->
+        <div class="projects-intro animate-from-left">
+            <span class="badge-tag">Featured Work</span>
+            <h2 class="projects-main-heading">
+                Projects That Showcase My Skills & Creativity
+            </h2>
+            <p class="projects-sub-text">
+                A collection of responsive websites and web applications built with modern frontend technologies, clean code, and user-focused design.
+            </p>
+        </div>
+
+        <!-- Projects Grid Layout -->
+        <div class="projects-grid">
+            
+            <!-- Project 1: Skincare Website -->
+            <div class="project-card animate-top-bottom">
+                <div class="card-pin"></div>
+                <div class="project-card-inner">
+                    <span class="project-category">FRONTEND • E-COMMERCE • UI/UX</span>
+                    <h3 class="project-title">Vanya Beauty Skincare</h3>
+                    <p class="project-desc">
+                        A modern, responsive e-commerce web application featuring interactive product showcases, dynamic filtering, and smooth UI transitions for a luxury beauty brand.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS Grid</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">GitHub </span>
+                    </div>
+                    <a href="https://aa-shikha.github.io/beauty_brand/" target="_blank" class="project-btn">
+                        <span>View Live Demo</span>
+                        <i class="btn-arrow">→</i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2: Movie Website -->
+            <div class="project-card animate-top-bottom">
+                <div class="card-pin"></div>
+                <div class="project-card-inner">
+                    <span class="project-category">FRONTEND  • E-COMMERCE • INTERACTIVE</span>
+                    <h3 class="project-title">CineVerse Movie Hub</h3>
+                    <p class="project-desc">
+                        An interactive movie discovery platform featuring trending film catalogs, live search filters, modal previews, and responsive video player layouts.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">GitHub</span>
+                    </div>
+                    <a href="https://aa-shikha.github.io/may_stom/" target="_blank" class="project-btn">
+                        <span>View Live Demo</span>
+                        <i class="btn-arrow">→</i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+    <script src="script.js"></script>
+</body>
+</html>

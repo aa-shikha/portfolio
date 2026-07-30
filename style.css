@@ -1,0 +1,1070 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* ================= PRELOADER ================= */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #ff2a2a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.text-wrapper {
+    overflow: hidden;
+}
+
+.loader-text {
+    font-size: 5.5rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -3px; 
+    -webkit-text-stroke: 2px #ffffff; /* Text borders ko extra thick stroke dene ke liye */
+    
+    transform: translateY(100%);
+    animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.2s;
+}
+.dot {
+    color: #ffffff;
+}
+
+@keyframes revealText {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0%); }
+}
+
+#preloader.hide {
+    transform: translateY(-100%);
+}
+
+
+/* ================= HERO SECTION (FULL BACKGROUND VIDEO) ================= */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    padding: 1.5rem 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+/* Background Video styling to fit complete background */
+.hero-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    z-index: 1;
+}
+
+/* Slight Gradient Overlay so text pops out over video */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*background: linear-gradient(90deg, rgba(255, 42, 42, 0.75) 0%, rgba(0, 0, 0, 0.4) 100%);*/
+    z-index: 2;
+}
+/* ================= NAVBAR STYLES ================= */
+#navbar-placeholder {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.4s ease-in-out;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    width: 100%;
+    background-color: transparent; 
+    transition: all 0.4s ease-in-out;
+}
+
+/* Default Colors over Hero/Video Background */
+.navbar .logo {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.nav-dot {
+    color: #ffffff;
+}
+
+.navbar .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.8rem;
+}
+
+.navbar .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    opacity: 0.9;
+}
+
+.navbar .nav-links a:hover {
+    opacity: 1;
+}
+
+.navbar .hire-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 0.6rem 1.6rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.navbar .hire-btn:hover {
+    background-color: #ffffff;
+    color: #ff2a2a;
+}
+
+
+/* ================= SCROLLED STATE (White Background) ================= */
+#navbar-placeholder.scrolled .navbar {
+    background-color: #ffffff; /* White background on scroll */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 0.9rem 5%;
+}
+
+/* Text and Logo changes to Dark on Scroll */
+#navbar-placeholder.scrolled .navbar .logo {
+    color: #121212;
+}
+
+#navbar-placeholder.scrolled .navbar .logo .nav-dot {
+    color: #ff2a2a;
+}
+
+#navbar-placeholder.scrolled .navbar .nav-links a {
+    color: #333333;
+}
+
+#navbar-placeholder.scrolled .navbar .nav-links a:hover {
+    color: #ff2a2a;
+}
+
+/* Button style adjustment on White Background */
+#navbar-placeholder.scrolled .navbar .hire-btn {
+    background-color: #121212;
+    color: #ffffff;
+    border: none;
+}
+
+#navbar-placeholder.scrolled .navbar .hire-btn:hover {
+    background-color: #ff2a2a;
+    color: #ffffff;
+}
+/* ================= SOUND CONTROL BUTTON ================= */
+.sound-control-wrapper {
+    position: absolute;
+    right: 4%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 999 !important; 
+}
+
+.sound-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    pointer-events: auto;
+}
+
+.sound-btn:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+    transform: scale(1.08);
+}
+
+.sound-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-transform: uppercase;
+    pointer-events: none; 
+}
+/* ================= HERO TEXT CONTENT ================= */
+.hero-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    z-index: 10;
+    margin-top: 2rem;
+}
+
+.hero-text-content {
+    max-width: 650px;
+}
+
+.hero-heading {
+    font-size: 3.8rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+.hero-heading span {
+    display: block;
+}
+
+.hero-description {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 2.2rem;
+    font-weight: 500;
+    max-width: 560px;
+    text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.btn {
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-block;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: #ffffff;
+    color: #121212;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+}
+
+.btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+
+/* ================= ABOUT SECTION ================= */
+.about-section {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #ff2a2a; 
+    color: #ffffff;
+    padding: 6rem 5% 10rem 5%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.about-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 4rem;
+    align-items: center;
+    z-index: 5;
+}
+
+/* --- Hanging Tablet Image Frame --- */
+.about-image-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px; 
+}
+
+/* Wire hanging from the absolute TOP of the section */
+.wire-handle {
+    width: 8px;
+    height: 140px; /* Long wire extending to section top */
+    background-color: #121212;
+    position: absolute;
+    top: -6rem; /* Extends straight to top border of section */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.wire-handle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 10px;
+    background-color: #ffffff;
+    border-radius: 2px;
+}
+
+/* Tablet Frame Styling */
+.tablet-frame {
+    width: 100%;
+    max-width: 380px;
+    height: 480px;
+    background-color: #121212;
+    border-radius: 28px;
+    padding: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.about-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+
+/* --- Right Text Content --- */
+.about-heading {
+    font-size: 3.3rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    color: #000000;
+    letter-spacing: -1px;
+   
+}
+
+.about-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* "Shikha Waldia" in Black bold text */
+.about-description strong {
+    color: #000000; /* Pure Black Name Text */
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+
+/* --- Darker & High-Contrast Tech Stack Icons --- */
+.tech-icons {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 2.8rem;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.tech-icons i {
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+    /* Red background par icons sharp dikhane ke liye dark shadow */
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+/* HTML Icon Specific Fix for High Contrast */
+.tech-icons .fa-html5 { 
+    color: #ff4500 !important; /* Bright Electric Orange-Red */
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.7)) !important;
+}
+.tech-icons .fa-css3-alt { color: #0055ff; }     /* Deep CSS Blue */
+.tech-icons .fa-js { 
+    color: #f7df1e; 
+    background-color: #000000;                     /* JS icon text black box to stand out */
+    border-radius: 4px;
+    padding: 0 4px;
+} 
+.tech-icons .fa-bootstrap { color: #563d7c; }  /* Darker Bootstrap Purple */
+.tech-icons .fa-react { color: #00d8ff; }      /* Bright React Cyan */
+.tech-icons .fa-figma { color: #121212; }      /* Dark Figma Contrast */
+
+.tech-icons i:hover {
+    transform: translateY(-8px) scale(1.15);
+    filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.6));
+}
+
+/* --- Bottom Wavy Shape Divider --- */
+.wave-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 2;
+}
+
+.wave-bottom svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 220px; /* Height badhane se wave deep dikhegi */
+    transform: scaleY(1.35); /* Smooth deep curve effect */
+    transform-origin: bottom
+}
+
+
+/* ================= SCROLL ANIMATIONS ================= */
+
+/* Initial Hidden States */
+.animate-top-bottom {
+    opacity: 0;
+    transform: translateY(-80px);
+    transition: all 1s cubic-bezier(0.99, 1, 0.5, 1);
+}
+
+.animate-right-left {
+    opacity: 0;
+    transform: translateX(80px);
+    transition: all 1s cubic-bezier(0.99, 1, 0.5, 1);
+}
+
+/* Animated Active Class (JS se apply ) */
+.animate-top-bottom.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animate-right-left.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+/* ================= EXPERTISE SECTION STYLES ================= */
+.expertise-section {
+    position: relative;
+    background-color: #fcfcfc;
+    background-image: 
+        linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    padding: 8rem 5% 6rem 5%;
+    overflow: hidden;
+}
+
+.expertise-container {
+    max-width: 1050px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+    padding: 0 1.5rem;
+}
+
+/* --- Left Intro Header --- */
+.expertise-intro {
+    max-width: 500px;
+    margin-bottom: 2rem;
+    margin-left: 0;
+    text-align: left;
+}
+
+.badge-tag {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 1.5rem;
+    background-color: #ffffff;
+}
+
+
+/*  Bold & Heavy Main Heading */
+.expertise-main-heading {
+    font-size: 3.2rem;
+    font-weight: 900;
+    color: #000000; 
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    word-wrap: break-word;
+    -webkit-text-stroke: 1px #000000; 
+}
+.expertise-sub-text {
+    font-size: 1.05rem;
+    color: #555555;
+    line-height: 1.6;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* --- SVG Connecting Dotted Path --- */
+.expertise-path-svg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1050px;
+    height: 88%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#expertisePath {
+    opacity: 0.35;
+    transition: stroke 0.1s ease, opacity 0.1s ease;
+}
+
+/* --- Cards Stack & Layout --- */
+.cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    position: relative;
+    padding: 0 2rem;
+}
+
+/* Outer Card Frame (Bright Red) */
+.expert-card {
+    width: 100%;
+    max-width: 350px;
+    background-color: #ff2525;
+    border-radius: 36px;
+    padding: 2.8rem 0.8rem 0.8rem 0.8rem; 
+    position: relative;
+    box-shadow: 0 20px 40px rgba(255, 37, 37, 0.45);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, opacity 0.8s ease;
+}
+
+.expert-card:hover {
+    box-shadow: 0 25px 50px rgba(255, 37, 37, 0.6);
+}
+
+/* Inner Card Container (Darker Red Inset) */
+.card-inner {
+    background-color: #e01111;
+    border-radius: 28px;
+    padding: 2.2rem 1.8rem;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Metallic Pin Ring */
+.card-pin {
+    width: 22px;
+    height: 22px;
+    background: radial-gradient(circle at 35% 35%, #ffffff 0%, #d4d4d4 50%, #8c8c8c 100%);
+    border: 2px solid #a6a6a6;
+    border-radius: 50%;
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* Card Content Typography */
+.card-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ffffff;
+    margin-bottom: 1.2rem;
+    opacity: 0.95;
+    display: block;
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    line-height: 1.15;
+    color: #ffffff;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.5px;
+}
+
+.card-desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 500;
+}
+
+/* --- Specific Card Positioning & Staggering --- */
+
+/* Card 01: Top Right Shift */
+.card-right:first-child {
+    align-self: flex-end;
+    margin-top: -21rem;
+    z-index: 6;
+}
+
+/* Card 02: Left Shift */
+.card-left {
+    align-self: flex-start;
+    z-index: 6;
+}
+
+/* Card 03: Right Shift */
+.card-right:not(:first-child) {
+    align-self: flex-end;
+    z-index: 6;
+}
+
+/* --- Scroll Animations --- */
+.animate-from-left {
+    opacity: 0;
+    transform: translateX(-80px);
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.animate-from-right {
+    opacity: 0;
+    transform: translateX(80px);
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.animate-from-left.show,
+.animate-from-right.show {
+    opacity: 1;
+}
+
+/* Smooth Rotation on Scroll Trigger */
+.card-left.show {
+    transform: translateX(0) rotate(-3deg);
+}
+
+.card-right.show {
+    transform: translateX(0) rotate(3deg);
+}
+
+/* Bottom Tagline */
+.bottom-tagline {
+    text-align: right;
+    margin-top: 3rem;
+    font-family: 'Caveat', 'Comic Sans MS', cursive, sans-serif;
+    font-size: 2.2rem;
+    color: #222222;
+    transform: rotate(-3deg);
+}
+
+
+/* ================= SKILLS SECTION  ================= */
+.skills-section {
+    position: relative;
+    background-color: #fcfcfc;
+    background-image: 
+        linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    padding: 2rem 5% 6rem 5%;
+    margin-top: -1.5rem;
+    overflow: hidden;
+}
+
+.skills-container {
+    max-width: 1050px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+}
+
+/* Skills Heading Left Alignment  */
+.skills-intro {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    max-width: 600px;
+    margin-bottom: 3rem;
+    text-align: left;
+    padding-left: 2rem; 
+}
+/* Badge Tag */
+.skills-intro .badge-tag {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 1.2rem;
+    background-color: #ffffff;
+}
+
+/* Main Heading */
+.skills-main-heading {
+    display: block !important;
+    font-size: 2.7rem;
+    font-weight: 800;
+    color: #000000;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+    -webkit-text-stroke: 0.5px #000000;
+}
+
+/* Subtext */
+.skills-sub-text {
+    display: block !important;
+    font-size: 1.05rem;
+    color: #555555;
+    font-weight: 800;
+    line-height: 1.5;
+     letter-spacing: 1px;
+}
+
+/* ---  Grid Layout --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+/* --- Double-Layer Outer Shell (Bright Red) --- */
+.skill-card {
+    background-color: #ff2525;
+    border-radius: 36px;
+    padding: 2.8rem 0.8rem 0.8rem 0.8rem; 
+    position: relative;
+    box-shadow: 0 20px 40px rgba(255, 37, 37, 0.35);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(255, 37, 37, 0.5);
+}
+
+/* Inner Dark Red Box */
+.skill-card-inner {
+    background-color: #e01111;
+    border-radius: 28px;
+    padding: 2rem 1.8rem;
+    color: #ffffff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Card Metallic Pin */
+.skill-card .card-pin {
+    width: 22px;
+    height: 22px;
+    background: radial-gradient(circle at 35% 35%, #ffffff 0%, #d4d4d4 50%, #8c8c8c 100%);
+    border: 2px solid #a6a6a6;
+    border-radius: 50%;
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* Card Heading Title */
+.skill-card-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.3px;
+    text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Skill Pills Wrapper */
+.tags-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+/* Skill Pills (White Pill Style) */
+.skill-pill {
+    background-color: #ffffff;
+    color: #121212;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.5rem 1.1rem;
+    border-radius: 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    cursor: default;
+}
+
+.skill-pill:hover {
+    transform: translateY(-3px) scale(1.05);
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* ================= PROJECTS SECTION (COMPACT 3-CARD GRID) ================= */
+.projects-section {
+    position: relative;
+    background-color: #fcfcfc;
+    background-image: 
+        linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    padding: 4rem 5% 6rem 5%;
+    overflow: hidden;
+}
+
+.projects-container {
+    max-width: 1140px; /* Container width expanded slightly for 3 cards */
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+}
+
+/* --- Section Intro Block (Aligned with Cards Edge) --- */
+.projects-intro {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    max-width: 620px;
+    margin-bottom: 2.5rem;
+    padding-left: 0.4rem;
+    text-align: left;
+}
+
+.projects-intro .badge-tag {
+    display: inline-block !important;
+    padding: 0.35rem 1.1rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+}
+
+.projects-main-heading {
+    display: block !important;
+    font-size: 3.1rem;
+    font-weight:900;
+    color: #000000;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+    -webkit-text-stroke: 0.5px #000000;
+}
+
+.projects-sub-text {
+    display: block !important;
+    font-size: 1rem;
+    color: #555555;
+    font-weight: 800;
+    line-height: 1.5;
+    letter-spacing: 1px;
+}
+
+/* --- Projects Grid (3 Columns Layout) --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Cards in a Row */
+    gap: 1.5rem; /* Gap reduced for tighter grid */
+}
+
+/* Outer Red Card Frame (Compact Size) */
+.project-card {
+    background-color: #ff2525;
+    border-radius: 28px;
+    padding: 2.2rem 0.6rem 0.6rem 0.6rem; /* Reduced padding for smaller height */
+    position: relative;
+    box-shadow: 0 15px 30px rgba(255, 37, 37, 0.3);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(255, 37, 37, 0.5);
+}
+
+/* Metallic Pin Ring */
+.project-card .card-pin {
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle at 35% 35%, #ffffff 0%, #d4d4d4 50%, #8c8c8c 100%);
+    border: 2px solid #a6a6a6;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* Inner Dark Red Box (Compact Content Area) */
+.project-card-inner {
+    background-color: #e01111;
+    border-radius: 22px;
+    padding: 1.5rem 1.2rem; 
+    color: #ffffff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Category Label */
+.project-category {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+}
+
+/* Project Title */
+.project-title {
+    font-size: 1.35rem; 
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.3px;
+}
+
+/* Project Description */
+.project-desc {
+    font-size: 0.85rem; 
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+/* Tech Tags Wrapper */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.2rem;
+}
+
+.tech-tag {
+    background-color: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* GitHub Live Demo Button */
+.project-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    color: #121212;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 0.65rem 1.1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    margin-top: auto;
+}
+
+.project-btn .btn-arrow {
+    font-style: normal;
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.project-btn:hover {
+    background-color: #121212;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.project-btn:hover .btn-arrow {
+    transform: translateX(3px);
+}
+
