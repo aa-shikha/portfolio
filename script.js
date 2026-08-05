@@ -24,32 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // ================= 3. AUTO-UNMUTE ON FIRST USER CLICK =================
+    // ================= 3. MANUAL MUTE / UNMUTE BUTTON TOGGLE ONLY =================
     const heroVideo = document.getElementById('heroVideo');
     const soundToggle = document.getElementById('soundToggle');
     const soundIcon = document.getElementById('soundIcon');
     const soundLabel = document.getElementById('soundLabel');
 
-    // Enable Sound on First Click Anywhere on Page
-    const enableAudio = () => {
-        if (heroVideo && heroVideo.muted) {
-            heroVideo.muted = false;
-            heroVideo.play().then(() => {
-                if (soundIcon) soundIcon.className = 'fa-solid fa-volume-high';
-                if (soundLabel) soundLabel.textContent = 'MUTE REEL';
-            }).catch(err => console.log(err));
-        }
-        // Remove listener once audio is enabled
-        document.removeEventListener('click', enableAudio);
-    };
+    // Global document click listener REMOVED so clicks on buttons/links won't auto-unmute the video.
 
-    document.addEventListener('click', enableAudio);
-
-
-    // ================= 4. MANUAL MUTE / UNMUTE BUTTON TOGGLE =================
     if (soundToggle && heroVideo) {
         soundToggle.addEventListener('click', (e) => {
-            e.stopPropagation(); // Avoid triggering document click
+            e.stopPropagation();
             e.preventDefault();
             
             if (heroVideo.muted) {
@@ -67,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // ================= 5. NAVBAR SCROLL BACKGROUND TOGGLE =================
+    // ================= 4. NAVBAR SCROLL BACKGROUND TOGGLE =================
     window.addEventListener('scroll', () => {
         const navbarPlaceholder = document.getElementById('navbar-placeholder');
         if (navbarPlaceholder) {
@@ -79,16 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-});
 
-// ================= 7. SCROLL ANIMATION FOR ABOUT SECTION =================
+    // ================= 5. SCROLL ANIMATION FOR SECTIONS =================
     const animatedElements = document.querySelectorAll('.animate-top-bottom, .animate-right-left');
 
     const observerOptions = {
-        threshold: 0.2 // Section ka 20% dikhte hi animation start ho jayegi
+        threshold: 0.15 
     };
 
-    const sectionObserver = new IntersectionObserver((entries, observer) => {
+    const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('show');
@@ -98,7 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animatedElements.forEach(el => sectionObserver.observe(el));
 
-    // ================= EXPERTISE SECTION SCROLL ANIMATION & DOTTED PATH =================
+
+    // ================= 6. EXPERTISE SECTION SCROLL ANIMATION & DOTTED PATH =================
     const expertiseElements = document.querySelectorAll('.expertise-section .animate-from-left, .expertise-section .animate-from-right');
     const expertisePath = document.getElementById('expertisePath');
 
@@ -108,11 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.classList.add('show');
             }
         });
-    }, { threshold: 0.25 });
+    }, { threshold: 0.2 });
 
     expertiseElements.forEach(el => expertiseObserver.observe(el));
 
-    // Scroll Position ke saath Dotted Line Path Darken & Fill karne ka logic
+    // Scroll Position ke saath Dotted Line Path 
     window.addEventListener('scroll', () => {
         const expertiseSection = document.getElementById('expertise');
         if (!expertiseSection || !expertisePath) return;
@@ -120,19 +105,67 @@ document.addEventListener('DOMContentLoaded', () => {
         const rect = expertiseSection.getBoundingClientRect();
         const windowHeight = window.innerHeight;
 
-        // Progress calculation inside expertise section
         if (rect.top < windowHeight && rect.bottom > 0) {
             const totalHeight = rect.height;
             const progress = (windowHeight - rect.top) / (windowHeight + totalHeight);
             
-            // Path stroke opacity and dash offset adjustment
             const opacityValue = Math.min(Math.max(progress * 1.5, 0.3), 1);
             expertisePath.style.opacity = opacityValue;
             
             if (opacityValue > 0.6) {
-                expertisePath.style.stroke = "#000000"; // Darken to solid black when scrolling
+                expertisePath.style.stroke = "#000000";
             } else {
                 expertisePath.style.stroke = "#121212";
             }
         }
     });
+
+});
+//=====================mobile====================
+
+window.toggleMobileMenu = function() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    
+    if (mobileMenu) {
+        mobileMenu.classList.toggle('active');
+        
+        if (menuIcon) {
+            if (mobileMenu.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        }
+    }
+};
+
+window.closeMobileMenu = function() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    
+    if (mobileMenu) {
+        mobileMenu.classList.remove('active');
+        if (menuIcon) {
+            menuIcon.classList.remove('fa-xmark');
+            menuIcon.classList.add('fa-bars');
+        }
+    }
+};
+document.addEventListener("DOMContentLoaded", function () {
+    const certCards = document.querySelectorAll(".cert-flip-card");
+
+    certCards.forEach((card) => {
+        card.addEventListener("click", function (e) {
+           
+            if (e.target.closest(".view-pdf-btn")) {
+                return;
+            }
+            
+            // Toggle 'is-flipped' class on tap/click
+            this.classList.toggle("is-flipped");
+        });
+    });
+});
