@@ -30,13 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const soundIcon = document.getElementById('soundIcon');
     const soundLabel = document.getElementById('soundLabel');
 
-    // Global document click listener REMOVED so clicks on buttons/links won't auto-unmute the video.
-
     if (soundToggle && heroVideo) {
         soundToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             e.preventDefault();
-            
+
             if (heroVideo.muted) {
                 heroVideo.muted = false;
                 heroVideo.play().then(() => {
@@ -68,24 +66,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // ================= 5. SCROLL ANIMATION FOR SECTIONS =================
     const animatedElements = document.querySelectorAll('.animate-top-bottom, .animate-right-left');
 
-    const observerOptions = {
-        threshold: 0.15 
-    };
-
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('show');
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.15 });
 
     animatedElements.forEach(el => sectionObserver.observe(el));
 
 
     // ================= 6. EXPERTISE SECTION SCROLL ANIMATION & DOTTED PATH =================
     const expertiseElements = document.querySelectorAll('.expertise-section .animate-from-left, .expertise-section .animate-from-right');
-    const expertisePath = document.getElementById('expertisePath');
 
     const expertiseObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -97,39 +90,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     expertiseElements.forEach(el => expertiseObserver.observe(el));
 
-    // Scroll Position ke saath Dotted Line Path 
-    window.addEventListener('scroll', () => {
-        const expertiseSection = document.getElementById('expertise');
-        if (!expertiseSection || !expertisePath) return;
+    // Dotted line: cards ki actual position se path banata hai
+    const pathSvg = document.querySelector('.expertise-path-svg');
+    const expertisePath = document.getElementById('expertisePath');
+    const expertiseContainer = document.querySelector('.expertise-container');
 
-        const rect = expertiseSection.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
+    if (pathSvg && expertisePath && expertiseContainer) {
+        // SVG ko container ke andar le aao (HTML change ki zarurat nahi)
+        expertiseContainer.prepend(pathSvg);
 
-        if (rect.top < windowHeight && rect.bottom > 0) {
-            const totalHeight = rect.height;
-            const progress = (windowHeight - rect.top) / (windowHeight + totalHeight);
-            
-            const opacityValue = Math.min(Math.max(progress * 1.5, 0.3), 1);
-            expertisePath.style.opacity = opacityValue;
-            
-            if (opacityValue > 0.6) {
-                expertisePath.style.stroke = "#000000";
-            } else {
-                expertisePath.style.stroke = "#121212";
+        const drawExpertisePath = () => {
+            const cards = expertiseContainer.querySelectorAll('.expert-card');
+            if (cards.length < 2) return;
+
+            const w = expertiseContainer.offsetWidth;
+            const h = expertiseContainer.offsetHeight;
+            pathSvg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+            pathSvg.setAttribute('preserveAspectRatio', 'none');
+
+            let d = '';
+            for (let i = 0; i < cards.length - 1; i++) {
+                const a = cards[i];
+                const b = cards[i + 1];
+
+                const x1 = a.offsetLeft + a.offsetWidth / 2;
+                const y1 = a.offsetTop + a.offsetHeight;
+                const x2 = b.offsetLeft + b.offsetWidth / 2;
+                const y2 = b.offsetTop;
+                const gap = (y2 - y1) * 0.6;
+
+                d += `M ${x1} ${y1} C ${x1} ${y1 + gap}, ${x2} ${y2 - gap}, ${x2} ${y2} `;
             }
-        }
-    });
+            expertisePath.setAttribute('d', d);
+        };
+
+        drawExpertisePath();
+        window.addEventListener('load', drawExpertisePath);
+        window.addEventListener('resize', drawExpertisePath);
+        new ResizeObserver(drawExpertisePath).observe(expertiseContainer);
+    }
 
 });
+
 //=====================mobile====================
 
 window.toggleMobileMenu = function() {
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = document.getElementById('menu-icon');
-    
+
     if (mobileMenu) {
         mobileMenu.classList.toggle('active');
-        
+
         if (menuIcon) {
             if (mobileMenu.classList.contains('active')) {
                 menuIcon.classList.remove('fa-bars');
@@ -145,7 +156,7 @@ window.toggleMobileMenu = function() {
 window.closeMobileMenu = function() {
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = document.getElementById('menu-icon');
-    
+
     if (mobileMenu) {
         mobileMenu.classList.remove('active');
         if (menuIcon) {
@@ -154,17 +165,16 @@ window.closeMobileMenu = function() {
         }
     }
 };
+
+// ================= CERTIFICATION CARDS: TAP TO FLIP =================
 document.addEventListener("DOMContentLoaded", function () {
     const certCards = document.querySelectorAll(".cert-flip-card");
 
     certCards.forEach((card) => {
         card.addEventListener("click", function (e) {
-           
             if (e.target.closest(".view-pdf-btn")) {
                 return;
             }
-            
-            // Toggle 'is-flipped' class on tap/click
             this.classList.toggle("is-flipped");
         });
     });
